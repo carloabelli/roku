@@ -3,6 +3,9 @@ name = "roku"
 version = "0.1.0"
 authors = ["Carlo Abelli <carlo@abelli.me>"]
 edition = "2018"
+license = "MIT"
+description = "Rust wrapper around the Roku API"
+repository = "https://github.com/carloabelli/roku"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
