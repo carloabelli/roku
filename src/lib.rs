@@ -1,11 +1,25 @@
 use futures::prelude::*;
-use reqwest::{Client, Url};
+use reqwest::Client;
 use serde::Deserialize;
 use serde_xml_rs::from_str;
 use ssdp_client::{search, SearchTarget};
-use std::{error::Error, time::Duration};
+use std::time::Duration;
+use thiserror::Error;
+use url::Url;
 
-type Result<T> = std::result::Result<T, Box<dyn Error>>;
+#[derive(Debug, Error)]
+pub enum Error {
+    #[error("failed to send request")]
+    Request(#[from] reqwest::Error),
+    #[error("failed to send SSDP request")]
+    SSDPRequest(#[from] ssdp_client::Error),
+    #[error("failed to parse URL")]
+    URLParse(#[from] url::ParseError),
+    #[error("failed to parse XML")]
+    XMLParse(#[from] serde_xml_rs::Error),
+}
+
+type Result<T> = std::result::Result<T, Error>;
 
 #[derive(Debug)]
 pub struct Device {
