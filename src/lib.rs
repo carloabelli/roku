@@ -3,7 +3,7 @@ use reqwest::Client;
 use serde::Deserialize;
 use serde_xml_rs::from_str;
 use ssdp_client::{search, SearchTarget};
-use std::time::Duration;
+use std::{fmt, time::Duration};
 use thiserror::Error;
 use url::Url;
 
@@ -250,38 +250,38 @@ pub enum Key {
     Lit(char),
 }
 
-impl Key {
-    fn to_string(&self) -> String {
+impl fmt::Display for Key {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match *self {
-            Key::Back => "Back".to_string(),
-            Key::Backspace => "Backspace".to_string(),
-            Key::ChannelDown => "ChannelDown".to_string(),
-            Key::ChannelUp => "ChannelUp".to_string(),
-            Key::Down => "Down".to_string(),
-            Key::Enter => "Enter".to_string(),
-            Key::FindRemote => "FindRemote".to_string(),
-            Key::Fwd => "Fwd".to_string(),
-            Key::Home => "Home".to_string(),
-            Key::Info => "Info".to_string(),
-            Key::InputAV1 => "InputAV1".to_string(),
-            Key::InputHDMI1 => "InputHDMI1".to_string(),
-            Key::InputHDMI2 => "InputHDMI2".to_string(),
-            Key::InputHDMI3 => "InputHDMI3".to_string(),
-            Key::InputHDMI4 => "InputHDMI4".to_string(),
-            Key::InputTuner => "InputTuner".to_string(),
-            Key::InstantReplay => "InstantReplay".to_string(),
-            Key::Left => "Left".to_string(),
-            Key::Play => "Play".to_string(),
-            Key::PowerOff => "PowerOff".to_string(),
-            Key::Rev => "Rev".to_string(),
-            Key::Right => "Right".to_string(),
-            Key::Search => "Search".to_string(),
-            Key::Select => "Select".to_string(),
-            Key::Up => "Up".to_string(),
-            Key::VolumeDown => "VolumeDown".to_string(),
-            Key::VolumeMute => "VolumeMute".to_string(),
-            Key::VolumeUp => "VolumeUp".to_string(),
-            Key::Lit(c) => format!("Lit_{}", c),
+            Key::Back => write!(f, "Back"),
+            Key::Backspace => write!(f, "Backspace"),
+            Key::ChannelDown => write!(f, "ChannelDown"),
+            Key::ChannelUp => write!(f, "ChannelUp"),
+            Key::Down => write!(f, "Down"),
+            Key::Enter => write!(f, "Enter"),
+            Key::FindRemote => write!(f, "FindRemote"),
+            Key::Fwd => write!(f, "Fwd"),
+            Key::Home => write!(f, "Home"),
+            Key::Info => write!(f, "Info"),
+            Key::InputAV1 => write!(f, "InputAV1"),
+            Key::InputHDMI1 => write!(f, "InputHDMI1"),
+            Key::InputHDMI2 => write!(f, "InputHDMI2"),
+            Key::InputHDMI3 => write!(f, "InputHDMI3"),
+            Key::InputHDMI4 => write!(f, "InputHDMI4"),
+            Key::InputTuner => write!(f, "InputTuner"),
+            Key::InstantReplay => write!(f, "InstantReplay"),
+            Key::Left => write!(f, "Left"),
+            Key::Play => write!(f, "Play"),
+            Key::PowerOff => write!(f, "PowerOff"),
+            Key::Rev => write!(f, "Rev"),
+            Key::Right => write!(f, "Right"),
+            Key::Search => write!(f, "Search"),
+            Key::Select => write!(f, "Select"),
+            Key::Up => write!(f, "Up"),
+            Key::VolumeDown => write!(f, "VolumeDown"),
+            Key::VolumeMute => write!(f, "VolumeMute"),
+            Key::VolumeUp => write!(f, "VolumeUp"),
+            Key::Lit(c) => write!(f, "Lit_{}", c),
         }
     }
 }
