@@ -17,6 +17,8 @@ pub enum Error {
     URLParse(#[from] url::ParseError),
     #[error("failed to parse XML")]
     XMLParse(#[from] serde_xml_rs::Error),
+    #[error("argument error `{0}`")]
+    Argument(String),
 }
 
 type Result<T> = std::result::Result<T, Error>;
@@ -90,24 +92,20 @@ impl Device {
     }
 
     pub async fn launch(&self, app: &App) -> Result<()> {
-        let app_id = match &app.id {
-            Some(id) => id,
-            None => {
-                panic!(); // FIXME
-            }
-        };
+        let app_id = app
+            .id
+            .as_ref()
+            .ok_or_else(|| Error::Argument("app.id required".to_string()))?;
         let url = self.url.join(&format!("launch/{}", app_id))?;
         self.client.post(url).send().await?;
         Ok(())
     }
 
     pub async fn install(&self, app: &App) -> Result<()> {
-        let app_id = match &app.id {
-            Some(id) => id,
-            None => {
-                panic!(); // FIXME
-            }
-        };
+        let app_id = app
+            .id
+            .as_ref()
+            .ok_or_else(|| Error::Argument("app.id required".to_string()))?;
         let url = self.url.join(&format!("install/{}", app_id))?;
         self.client.post(url).send().await?;
         Ok(())
