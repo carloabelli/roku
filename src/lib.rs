@@ -383,10 +383,10 @@ impl Search {
     fn build(self) -> Vec<(String, String)> {
         let mut ret = vec![("keyword", self.keyword)];
         if let Some(launch) = self.launch {
-            ret.push(("launch", format!("{}", launch)));
+            ret.push(("launch", launch.to_string()));
         }
         if let Some(match_any) = self.match_any {
-            ret.push(("match-any", format!("{}", match_any)));
+            ret.push(("match-any", match_any.to_string()));
         }
         if let Some(provider_ids) = self.provider_ids {
             ret.push(("provider-id", provider_ids.join(",")));
@@ -408,10 +408,10 @@ impl Search {
             ));
         }
         if let Some(season) = self.season {
-            ret.push(("season", format!("{}", season)));
+            ret.push(("season", season.to_string()));
         }
         if let Some(show_unavailable) = self.show_unavailable {
-            ret.push(("show-unavailable", format!("{}", show_unavailable)));
+            ret.push(("show-unavailable", show_unavailable.to_string()));
         }
         if let Some(title) = self.title {
             ret.push(("title", title));
