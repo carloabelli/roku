@@ -422,17 +422,17 @@ impl Search {
         ret.into_iter().map(|(k, v)| (k.to_string(), v)).collect()
     }
 
-    pub fn launch(&mut self, launch: bool) -> &mut Self {
+    pub fn launch(&mut self, launch: bool) -> &mut Search {
         self.launch = Some(launch);
         self
     }
 
-    pub fn match_any(&mut self, match_any: bool) -> &mut Self {
+    pub fn match_any(&mut self, match_any: bool) -> &mut Search {
         self.match_any = Some(match_any);
         self
     }
 
-    pub fn provider(&mut self, provider: String) -> &mut Self {
+    pub fn provider(&mut self, provider: String) -> &mut Search {
         match &mut self.providers {
             Some(providers) => {
                 providers.push(provider);
@@ -444,7 +444,7 @@ impl Search {
         self
     }
 
-    pub fn provider_id(&mut self, provider_id: String) -> &mut Self {
+    pub fn provider_id(&mut self, provider_id: String) -> &mut Search {
         match &mut self.provider_ids {
             Some(provider_ids) => {
                 provider_ids.push(provider_id);
@@ -456,26 +456,26 @@ impl Search {
         self
     }
 
-    pub fn search_type(&mut self, search_type: SearchType) -> &mut Self {
+    pub fn search_type(&mut self, search_type: SearchType) -> &mut Search {
         self.search_type = Some(search_type);
         self
     }
 
-    pub fn season(&mut self, season: u32) -> &mut Self {
+    pub fn season(&mut self, season: u32) -> &mut Search {
         self.season = Some(season);
         self
     }
-    pub fn show_unavailable(&mut self, show_unavailable: bool) -> &mut Self {
+    pub fn show_unavailable(&mut self, show_unavailable: bool) -> &mut Search {
         self.show_unavailable = Some(show_unavailable);
         self
     }
 
-    pub fn title(&mut self, title: String) -> &mut Self {
+    pub fn title(&mut self, title: String) -> &mut Search {
         self.title = Some(title);
         self
     }
 
-    pub fn tmsid(&mut self, tmsid: String) -> &mut Self {
+    pub fn tmsid(&mut self, tmsid: String) -> &mut Search {
         self.tmsid = Some(tmsid);
         self
     }
