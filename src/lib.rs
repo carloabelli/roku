@@ -86,7 +86,6 @@ impl Device {
 
     pub async fn keypress(&self, key: &Key) -> Result<()> {
         let url = self.url.join(&format!("keypress/{}", key.to_string()))?;
-        println!("{}", url);
         self.client.post(url).send().await?;
         Ok(())
     }
@@ -115,7 +114,6 @@ impl Device {
         let url = self.url.join("query/device-info")?;
         let res = self.client.get(url).send().await?;
         let text = res.text().await?;
-        println!("{}", text);
         Ok(from_str(&text)?)
     }
 
