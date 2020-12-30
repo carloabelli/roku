@@ -38,11 +38,15 @@ impl Device {
     }
 
     pub async fn discover() -> Result<Vec<Device>> {
-        let search_target = SearchTarget::Custom("roku".into(), "ecp".into());
+        let search_target = SearchTarget::Custom("roku".to_string(), "ecp".to_string());
         let mut responses = search(&search_target, Duration::from_secs(3), 2).await?;
         let mut devices = vec![];
         while let Some(response) = responses.next().await {
-            let url = Url::parse(response?.location())?;
+            let response = response?;
+            if response.search_target() != &search_target {
+                continue;
+            }
+            let url = Url::parse(response.location())?;
             devices.push(Device {
                 url,
                 client: Client::new(),
