@@ -1,4 +1,4 @@
-use futures::prelude::*;
+use futures_util::stream::StreamExt;
 use reqwest::Client;
 use serde::Deserialize;
 use serde_xml_rs::from_str;

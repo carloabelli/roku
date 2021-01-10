@@ -8,7 +8,7 @@ description = "Rust wrapper around the Roku API"
 repository = "https://github.com/carloabelli/roku"
 
 [dependencies]
-futures = "0.3"
+futures-util = "0.3"
 reqwest = "0.11"
 serde = { version = "1.0", features = [ "derive" ] }
 serde-xml-rs = "0.4"
